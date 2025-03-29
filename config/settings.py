@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dota_2',
+        'NAME': 'dota2teamtracker',
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': 'localhost',
