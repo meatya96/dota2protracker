@@ -69,3 +69,6 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f"Ошибка при запросе к API: {e}"))
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Неожиданная ошибка: {e}"))
+
+# Загрузить все лиги с ID >= 15000
+#python manage.py load_leagues --min-id 15000
