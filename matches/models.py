@@ -8,8 +8,8 @@ class Match(models.Model):
     start_time = models.DateTimeField()
     duration = models.IntegerField(help_text="Длительность матча в секундах")
     radiant_win = models.BooleanField()
-    radiant_team = models.CharField(max_length=255, null=True, blank=True)
-    dire_team = models.CharField(max_length=255, null=True, blank=True)
+    radiant_team_id = models.IntegerField(null=True, blank=True)
+    dire_team_id = models.IntegerField(null=True, blank=True)
     patch = models.IntegerField(null=True, blank=True)
 
     class Meta:
