@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'leagues',
     'matches',
     'teams',
-    'draft_timings'
+    'draft_timings',
+    'heroes'
 ]
 
 MIDDLEWARE = [

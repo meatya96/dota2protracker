@@ -1,7 +1,7 @@
-# draft_timings/models.py
 from django.db import models
 from matches.models import Match
 from teams.models import Team
+from heroes.models import Hero
 
 class DraftTiming(models.Model):
     match = models.ForeignKey(
@@ -10,9 +10,10 @@ class DraftTiming(models.Model):
         related_name='draft_timings',
         verbose_name='Матч'
     )
-    hero = models.CharField(
-        max_length=50,
-        verbose_name='ID героя'
+    hero = models.ForeignKey(
+        Hero,
+        on_delete=models.CASCADE,
+        verbose_name='Герой'
     )
     is_pick = models.BooleanField(
         verbose_name='Тип действия',
