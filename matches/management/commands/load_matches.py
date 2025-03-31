@@ -2,6 +2,7 @@ import requests
 from django.core.management.base import BaseCommand
 from leagues.models import League
 from matches.models import Match
+from teams.models import Team
 from django.utils.timezone import make_aware
 from datetime import datetime
 from time import sleep
@@ -58,8 +59,8 @@ class Command(BaseCommand):
                                 'start_time': make_aware(datetime.fromtimestamp(match['start_time'])),
                                 'duration': match['duration'],
                                 'radiant_win': match['radiant_win'],
-                                'radiant_team_id': match.get('radiant_team_id'),
-                                'dire_team_id': match.get('dire_team_id'),
+                                'radiant_team': Team.objects.filter(team_id=match.get('radiant_team_id')).first(),
+                                'dire_team': Team.objects.filter(team_id=match.get('dire_team_id')).first(),
                                 'patch':matches_patch.get('patch')
                             }
                         )

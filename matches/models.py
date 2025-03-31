@@ -1,6 +1,6 @@
 from django.db import models
 from leagues.models import League
-
+from teams.models import Team
 
 class Match(models.Model):
     match_id = models.BigIntegerField(primary_key=True)
@@ -8,8 +8,19 @@ class Match(models.Model):
     start_time = models.DateTimeField()
     duration = models.IntegerField(help_text="Длительность матча в секундах")
     radiant_win = models.BooleanField()
-    radiant_team_id = models.IntegerField(null=True, blank=True)
-    dire_team_id = models.IntegerField(null=True, blank=True)
+    radiant_team = models.ForeignKey(
+        Team,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='radiant_matches')
+    dire_team = models.ForeignKey(
+        Team,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='dire_matches'
+    )
     patch = models.IntegerField(null=True, blank=True)
 
     class Meta:
