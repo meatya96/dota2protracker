@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Dota 2 Heroes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Dota 2 Heroes</h1>
+    
+    {% if heroes %}
+    <div class="row">
+        {% for hero in heroes %}
+        <div class="col-md-3 col-sm-4 col-6 mb-4">
+            <div class="card h-100">
+                <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/{{ hero.name|cut:'npc_dota_hero_' }}.png" 
+                     class="card-img-top" alt="{{ hero.localized_name }}"
+                     onerror="this.src='https://via.placeholder.com/256'">
+                <div class="card-body">
+                    <h5 class="card-title">{{ hero.localized_name }}</h5>
+                    <p class="card-text text-muted small">{{ hero.name }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        No heroes found in the database. Please load heroes data first.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

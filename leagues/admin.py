@@ -1,10 +1,9 @@
 from django.contrib import admin
-
-from leagues.models import League
-
+from .models import League
 
 @admin.register(League)
 class LeagueAdmin(admin.ModelAdmin):
-    list_display = ('leagueid', 'name',)
-    list_filter = ('name',)
-    search_fields = ('name',)
+    list_display = ('leagueid', 'name')
+    search_fields = ('name', 'leagueid')
+    list_per_page = 50
+    ordering = ('leagueid',)

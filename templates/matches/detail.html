@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Match {{ match.match_id }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Match #{{ match.match_id }}</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Radiant</h3>
+                <p>Team: {{ match.radiant_team.name|default:"Unknown" }}</p>
+                <p>Result: {% if match.radiant_win %}<span class="text-success">Victory</span>{% else %}<span class="text-danger">Defeat</span>{% endif %}</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Dire</h3>
+                <p>Team: {{ match.dire_team.name|default:"Unknown" }}</p>
+                <p>Result: {% if not match.radiant_win %}<span class="text-success">Victory</span>{% else %}<span class="text-danger">Defeat</span>{% endif %}</p>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <h4>Match Info</h4>
+            <p>League: {{ match.league.name }}</p>
+            <p>Duration: {{ match.duration }} seconds</p>
+            <p>Started: {{ match.start_time }}</p>
+            <p>Patch: {{ match.patch }}</p>
+        </div>
+    </div>
+</div>
+
+<a href="{% url 'matches:list' %}" class="btn btn-secondary mt-3">Back to Matches</a>
+{% endblock %}

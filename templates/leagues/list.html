@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Dota 2 Leagues{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Dota 2 Leagues</h1>
+    
+    {% if leagues %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>League Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for league in leagues %}
+                <tr>
+                    <td>{{ league.leagueid }}</td>
+                    <td>{{ league.name }}</td>
+                    <td>
+                        <a href="{% url 'matches:list' %}?league={{ league.leagueid }}" 
+                           class="btn btn-sm btn-primary">
+                            View Matches
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        No leagues found in the database. Please load leagues data first.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
